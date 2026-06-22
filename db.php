@@ -1,13 +1,24 @@
 <?php
 
-echo "<pre>";
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-echo "DB_HOST = " . getenv('DB_HOST') . "\n";
-echo "DB_PORT = " . getenv('DB_PORT') . "\n";
-echo "DB_NAME = " . getenv('DB_NAME') . "\n";
-echo "DB_USER = " . getenv('DB_USER') . "\n";
+$host = getenv('DB_HOST');
+$user = getenv('DB_USER');
+$pass = getenv('DB_PASS');
+$db   = getenv('DB_NAME');
+$port = getenv('DB_PORT');
 
-echo "</pre>";
+$conn = mysqli_connect(
+    $host,
+    $user,
+    $pass,
+    $db,
+    (int)$port
+);
 
-exit;
+if (!$conn) {
+    die("Database Connection Failed: " . mysqli_connect_error());
+}
+
 ?>
